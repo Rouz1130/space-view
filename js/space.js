@@ -1,12 +1,18 @@
-function View() {
+function Movie() {}
+var posterLink = null;
 
-}
-//
-// View.prototype.movie = function(displayFunction) {
-//   $.get('http://netflixroulette.net/api/api.php?title=' + movie, function(response) {
-//     displayFunction(response.runtime);
-//     console.log(response);
-//   });
-// };
+Movie.prototype.getMovie = function(movie) {
+  $.get('http://netflixroulette.net/api/api.php?title=' + movie, function(response) {
+    $('.showMovie').text(response.show_title + " was directed by " + response.director + " and stars " + response.show_cast);
+  });
+};
 
-exports.viewModule = View;
+Movie.prototype.getPoster = function(movie) {
+  $.get('http://netflixroulette.net/api/api.php?title=' + movie,
+  function(response) {
+    posterLink = response.poster;
+    console.log(posterLink);
+  });
+};
+
+exports.movieModule = Movie;

@@ -1,14 +1,12 @@
-var View = require('./../js/space.js').viewModule;
-
+var Movie = require('./../js/space.js').movieModule;
 
 $(document).ready(function() {
+  var currentMovie = new Movie();
   $('.movie-input').submit(function(event) {
     event.preventDefault();
     var movie = $('#user-input').val();
     $('#user-input').val("");
-    $('.showMovie').text("Information about " + movie);
-    $.get('http://netflixroulette.net/api/api.php?title=' + movie, function(response) {
-      console.log(response);
-    });
+    currentMovie.getMovie(movie);
+    currentMovie.getPoster(movie);
   });
 });
